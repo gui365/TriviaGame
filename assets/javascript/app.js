@@ -5,7 +5,22 @@ var triviaGame = {
                  { q: "?", a1: "", a2: "", a3: "", a4: "", correct: 0, comment: "" } ],
     winCount: 0,
     loseCount: 0,
+    generateQuestion: function() {
+        // Get rid of the START button
+        $("#main-options").empty();
 
+        // DO I NEED TO PICK A QUESTION RANDOMLY?
+        // Picking a question randomly
+        // var random = Math.floor((Math.random() * triviaGame.questions.length));
+        // var currentObject = triviaGame.questions[random];
+        // $("#question").html(currentObject.q);
+        // currentObject.read = true;
+        
+        //Generating the options with a loop
+        for (var i = 1; i < 5; i++) {
+            $("#options").append('<input id="option' + i + '" type="radio">' + " " + currentObject['a'+i] + '</input><br>');
+        };
+    },
 };
 
 // When page loads, show a 'start' button. When clicked, first question appears in the jumbotron and timer starts counting down.
