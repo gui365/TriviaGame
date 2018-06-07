@@ -5,22 +5,46 @@ var triviaGame = {
                  { q: "?", a1: "", a2: "", a3: "", a4: "", correct: 0, comment: "" } ],
     winCount: 0,
     loseCount: 0,
+    qCount: 0,
+    currentObject: this.questions[this.qCount],
     generateQuestion: function() {
-        // Get rid of the START button
+        // Getting rid of the START button
         $("#main-options").empty();
-
-        // DO I NEED TO PICK A QUESTION RANDOMLY?
-        // Picking a question randomly
-        // var random = Math.floor((Math.random() * triviaGame.questions.length));
-        // var currentObject = triviaGame.questions[random];
-        // $("#question").html(currentObject.q);
-        // currentObject.read = true;
+        
+        var currentObject = triviaGame.questions[triviaGame.qCount];
+        $("#question").html(currentObject.q);
         
         //Generating the options with a loop
         for (var i = 1; i < 5; i++) {
-            $("#options").append('<input id="option' + i + '" type="radio">' + " " + currentObject['a'+i] + '</input><br>');
+            $("#main-options").append('<input id="option' + i + '" type="radio">' + " " + currentObject['a'+i] + '</input><br>');
         };
+
+        // Generate a button to confirm answer
+        $("#main-options").append("<button id='confirm-button' onclick='triviaGame.confirm()'>Confirm</button>");
+        triviaGame.qCount++;
     },
+
+    confirm: function() {
+        if (condition) {
+            
+        }
+        
+        
+        if (triviaGame.qCount === triviaGame.questions.length) {
+            $("#main-options").empty();
+            $("#main-options").append
+        } else {
+            triviaGame.generateQuestion();
+            console.log(triviaGame.questions.length);
+            console.log(triviaGame.qCount);
+            
+        }
+    },
+
+    lastQ: function() {
+        console.log("Last question");
+        
+    }
 };
 
 // When page loads, show a 'start' button. When clicked, first question appears in the jumbotron and timer starts counting down.
