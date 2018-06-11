@@ -1,44 +1,57 @@
 var triviaGame = {
     // Create an array of objects, each one representing a question
-    questions: [ { q: "Which of the following was not a memeber of The Beatles?", a1: "Richard Starkey", a2: "Pete Best", a3: "Roger Daltrey", a4: "Stuart Sutcliffe", correct: 3, comment: "Roger Daltrey is the lead singer of English rock band, The Who" },
-                 { q: "Mexico is (about) how many times the size of the state of New Mexico?", a1: "2 times", a2: "6 times", a3: "10 times", a4: "17 times", correct: 2, comment: "Mexico has 1,964,375 sq km vs the 314,310 sq km of the state of New Mexico" },
-                 { q: "?", a1: "", a2: "", a3: "", a4: "", correct: 0, comment: "" } ],
+    questions: [ { q: "Which of the following was not a memeber of The Beatles?", a: ["Richard Starkey", "Pete Best", "Roger Daltrey", "Stuart Sutcliffe"], correct: 2, comment: "Roger Daltrey is the lead singer of English rock band, The Who", shown: false },
+                 { q: "Mexico is (about) how many times the size of the state of New Mexico?", a: ["2 times", "6 times", "10 times", "17 times"], correct: 1, comment: "Mexico has 1,964,375 sq km vs the 314,310 sq km of the state of New Mexico", shown: false },
+                 { q: "How much is 2 + 5?", a: ["7", "-3", "10", "25"], correct: 0, comment: "Basic math...", shown: false },
+                 { q: "Question 4?", a: ["1", "2", "3", "4"], correct: 0, comment: "No comment", shown: false },
+                 { q: "Question 5?", a: ["5", "6", "7", "8"], correct: 0, comment: "No comment", shown: false },
+                 { q: "Question 6?", a: ["6", "7", "8", "9"], correct: 0, comment: "No comment", shown: false },
+                ],
     winCount: 0,
     loseCount: 0,
     qCount: 0,
-    currentObject: this.questions[this.qCount],
+
+    
     generateQuestion: function() {
         // Getting rid of the START button
         $("#main-options").empty();
-        
-        var currentObject = triviaGame.questions[triviaGame.qCount];
-        $("#question").html(currentObject.q);
-        
-        //Generating the options with a loop
-        for (var i = 1; i < 5; i++) {
-            $("#main-options").append('<input id="option' + i + '" type="radio">' + " " + currentObject['a'+i] + '</input><br>');
-        };
 
-        // Generate a button to confirm answer
-        $("#main-options").append("<button id='confirm-button' onclick='triviaGame.confirm()'>Confirm</button>");
-        triviaGame.qCount++;
+        // Randomly pick a question that hasn't come up yet
+        var indexQ = Math.floor(Math.random() * this.questions.length);
+        var currentObject = this.questions[indexQ];
+
+        if (this.qCount < 5) {
+            if (currentObject.shown === false) {
+                $("#instructions").html("Question #" + (this.qCount + 1) + ":");
+                $("#question").html(currentObject.q);
+                
+                //Generating the options with a loop
+                for (var i = 0; i < 4; i++) {
+                    var answer = $("<div id='option" + i + "' class='answers' data-a='" + i + "'>" + " " + currentObject.a[i] + "</div>");
+                    answer.on("click", this.confirm);
+                    $("#main-options").append(answer);
+                };
+            
+                this.qCount++;
+                currentObject.shown = true;
+            
+            } else {
+            
+                this.generateQuestion();
+    
+            }    
+        } else {
+            // CREATE SUMMARY OF RIGHT/WRONG ANSWERS HERE!
+            // GENERATE A BUTTON TO RESTART THE GAME
+            console.log("All done!");
+            $("#question").empty();
+        }
+                
     },
 
     confirm: function() {
-        if (condition) {
-            
-        }
-        
-        
-        if (triviaGame.qCount === triviaGame.questions.length) {
-            $("#main-options").empty();
-            $("#main-options").append
-        } else {
-            triviaGame.generateQuestion();
-            console.log(triviaGame.questions.length);
-            console.log(triviaGame.qCount);
-            
-        }
+        console.log($(this).attr("data-a"));
+        // if data-a is equal to the correct answer in the question object, correct (settimer), else incorrect (settimer)
     },
 
     lastQ: function() {
