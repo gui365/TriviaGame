@@ -27,8 +27,6 @@ html, body {
     text-align: center;
     border: 3px solid black;
     border-radius: 0px 40px;
-    box-shadow: 10px 15px 10px black,
-    -10px -15px 10px red;
 }
 
 .wrapper button {
@@ -48,14 +46,28 @@ h2 {
 }
 
 .answers {
-    padding: 0.5rem;
+    padding: 0.5rem 2rem;
     margin: 0.8rem 0;
     font-size: 1.2rem;
-    border-top: 1px dotted black;
-    border-bottom: 1px dotted black;
+    border: 1px dotted black;
+    border-radius: 10px;
 }
 
 .answers:hover {
     cursor: pointer;
     background-color: rgba(231, 231, 148, 0.2);
+}
+
+main {
+    align-content: center;
+}
+
+button {
+    width: 50%;
+    height: 3rem;
+    box-shadow: 0 5px 10px rgb(184, 184, 184);
+}
+
+#main-question {
+    width: 100%;
 }

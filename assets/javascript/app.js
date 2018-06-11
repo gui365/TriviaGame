@@ -1,11 +1,13 @@
+// 44, 54, 57
+
 var triviaGame = {
     // Create an array of objects, each one representing a question
     questions: [ { q: "Which of the following was not a memeber of The Beatles?", a: ["Richard Starkey", "Pete Best", "Roger Daltrey", "Stuart Sutcliffe"], correct: 2, comment: "Roger Daltrey is the lead singer of English rock band, The Who", shown: false },
                  { q: "Mexico is (about) how many times the size of the state of New Mexico?", a: ["2 times", "6 times", "10 times", "17 times"], correct: 1, comment: "Mexico has 1,964,375 sq km vs the 314,310 sq km of the state of New Mexico", shown: false },
-                 { q: "How much is 2 + 5?", a: ["7", "-3", "10", "25"], correct: 0, comment: "Basic math...", shown: false },
+                 { q: "How much is 2 + 5?", a: ["7", "-3", "10", "25"], correct: 3, comment: "Basic math...", shown: false },
                  { q: "Question 4?", a: ["1", "2", "3", "4"], correct: 0, comment: "No comment", shown: false },
-                 { q: "Question 5?", a: ["5", "6", "7", "8"], correct: 0, comment: "No comment", shown: false },
-                 { q: "Question 6?", a: ["6", "7", "8", "9"], correct: 0, comment: "No comment", shown: false },
+                 { q: "Question 5?", a: ["5", "6", "7", "8"], correct: 1, comment: "No comment", shown: false },
+                 { q: "Question 6?", a: ["6", "7", "8", "9"], correct: 2, comment: "No comment", shown: false },
                 ],
     winCount: 0,
     loseCount: 0,
@@ -14,7 +16,7 @@ var triviaGame = {
     
     generateQuestion: function() {
         // Getting rid of the START button
-        $("#main-options").empty();
+        $("#start-button").remove();
 
         // Randomly pick a question that hasn't come up yet
         var indexQ = Math.floor(Math.random() * this.questions.length);
@@ -29,7 +31,7 @@ var triviaGame = {
                 for (var i = 0; i < 4; i++) {
                     var answer = $("<div id='option" + i + "' class='answers' data-a='" + i + "'>" + " " + currentObject.a[i] + "</div>");
                     answer.on("click", this.confirm);
-                    $("#main-options").append(answer);
+                    $("#options").append(answer);
                 };
             
                 this.qCount++;
@@ -50,13 +52,14 @@ var triviaGame = {
     },
 
     confirm: function() {
-        console.log($(this).attr("data-a"));
-        // if data-a is equal to the correct answer in the question object, correct (settimer), else incorrect (settimer)
-    },
-
-    lastQ: function() {
-        console.log("Last question");
-        
+        if ($(this).attr("data-a") == triviaGame.questions[triviaGame.qCount - 1].correct) {
+            // GENERATE CORRECT! SCREEN, DISPLAY FOR 5 SECONDS, THEN GENERATE NEXT QUESTION. ADD +1 TO WINCOUNT
+            console.log("Correct!");
+        } else {
+            // GENERATE INCORRECT SCREEN, DISPLAY FOR 5 SECONDS, THEN GENERATE NEXT QUESTION. ADD +1 TO LOSECOUNT
+            console.log("Incorrect");
+            
+        }
     }
 };
 

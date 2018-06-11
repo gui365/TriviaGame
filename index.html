@@ -13,17 +13,13 @@
 </head>
 <body class="flex align-justify-center">
     
-    <main class="wrapper">
+    <main class="wrapper flex">
         <h1 id="instructions">Welcome to the trivia game!</h1>
-        <div id="main-question">
+        <div id="main-question" class="flex align-justify-center">
             <h2 id="question"></h2>
-            <div id="options">
-                
-            </div>
+            <div id="options"></div>
         </div>
-        <div id="main-options">
-            <button id="start-button" onclick="triviaGame.generateQuestion()">START</button>
-        </div>
+        <button id="start-button" onclick="triviaGame.generateQuestion()">START</button>
     </main>
 
     <script src="https://code.jquery.com/jquery.js"></script>
