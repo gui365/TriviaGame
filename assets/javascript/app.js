@@ -4,10 +4,10 @@ var triviaGame = {
     // Create an array of objects, each one representing a question
     questions: [ { q: "Which of the following was not a memeber of The Beatles?", a: ["Richard Starkey", "Pete Best", "Roger Daltrey", "Stuart Sutcliffe"], correct: 2, comment: "Roger Daltrey is the lead singer of English rock band, The Who.", shown: false },
                  { q: "Mexico is (about) how many times the size of the state of New Mexico?", a: ["2 times", "6 times", "10 times", "17 times"], correct: 1, comment: "6.23 times to be exact. Mexico has 1,964,375 sq km vs the 314,310 sq km of the state of New Mexico.", shown: false },
-                 { q: "How much is 2 + 5?", a: ["7", "-3", "10", "25"], correct: 0, comment: "Basic math...", shown: false },
-                 { q: "Choose 4?", a: ["1", "2", "3", "4"], correct: 3, comment: "You chose the right number", shown: false },
-                 { q: "Choose 5?", a: ["5", "6", "7", "8"], correct: 0, comment: "You chose the right number", shown: false },
-                 { q: "Choose 6?", a: ["8", "7", "6", "9"], correct: 2, comment: "You chose the right number", shown: false },
+                 { q: "Which country has the most public holidays", a: ["India", "United States", "Mexico", "Austria"], correct: 0, comment: "India has the most in the world with 21 public holidays, whereas Mexico has only 7!", shown: false },
+                 { q: "What is the capital of Peru?", a: ["Vtox", "Quito", "La Paz", "Lima"], correct: 3, comment: "Lima is the capital and largest city of Peru, with a population of 9,752,000 as of 2017", shown: false },
+                 { q: "Close to which landmass does the Pacific Ocean reach its max depth?", a: ["Mariana Islands", "The Philippines", "Papua New Guinea", "Japan"], correct: 0, comment: "At this point you would have to dive 36,070 ft to reach the bottom of the ocean!", shown: false },
+                 { q: "How many New York cities would you need to line up to cover the area of the United States?", a: ["1,250,000", "125,000", "12,500", "1,250"], correct: 2, comment: "There would be 12,464 Empire States Buildings and King Kongs", shown: false },
                 ],
     winCount: 0,
     loseCount: 0,
@@ -35,7 +35,9 @@ var triviaGame = {
         
         // Getting rid of the START button and countdown to next question (see confirm function below)
         $("#start-button").remove();
+        $("#restart-button").remove();
         $("#next-in").empty();
+        $("#options").empty();
         // Randomly pick a question that hasn't come up yet
         triviaGame.indexQ = Math.floor(Math.random() * this.questions.length);
         var currentObject = this.questions[triviaGame.indexQ];
@@ -68,7 +70,16 @@ var triviaGame = {
             
             $("#options").append($("<h2>Correct: " + triviaGame.winCount + "</h2>"));
             $("#options").append($("<h2>Incorrect: " + triviaGame.loseCount + "</h2>"));
+
+            for (let i = 0; i < triviaGame.questions.length; i++) {
+                triviaGame.questions[i].shown = false;
+            }
+
+            $("main").append($("<button id='restart-button'>Play again</button>").on("click", restartGame));
             // If statement depending on score (e.g. if all correct "Congratulations!") -> $("#instructions").text();
+            triviaGame.winCount = 0;
+            triviaGame.loseCount = 0;
+            triviaGame.qCount = 0;
         }
                 
     },
@@ -77,6 +88,7 @@ var triviaGame = {
         if ($(this).attr("data-a") == triviaGame.questions[triviaGame.indexQ].correct) {
             triviaGame.winCount++;
             $("#instructions").text("Correct!");
+            $("#question").text(triviaGame.questions[triviaGame.indexQ].comment);
             $("#options").empty();
             // ADD AN IMAGE HERE -> $("#options").;
             
@@ -96,7 +108,7 @@ var triviaGame = {
             }, 1000);
 
         } else {
-            $("#instructions").text("Incorrect");
+            $("#instructions").text("Incorrect. The answer is " + triviaGame.questions[triviaGame.indexQ].a[triviaGame.questions[triviaGame.indexQ].correct]);
             triviaGame.incorrectAnswer();
         }
     },
@@ -125,6 +137,9 @@ var triviaGame = {
     }
 };
 
+function restartGame() {
+    triviaGame.generateQuestion();
+}
 // When page loads, show a 'start' button. When clicked, first question appears in the jumbotron and timer starts counting down.
 // If counter gets to 0, show "Time's up!" and question is marked as incorrect. Display the comment (and maybe and image) and the right answer.
 
