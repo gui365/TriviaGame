@@ -13,25 +13,29 @@ var triviaGame = {
     loseCount: 0,
     qCount: 0,
     indexQ: 0,
+    timerSeconds: 20,
     
     generateQuestion: function() {
+        // console.log(this);
+        
         // Start a countdown
-        // var seconds = 20;
-        // $("#timer-label").text("Time left");
-        // $("#time-h2").text(seconds);
+        $("#timer-label").text("Time left");
+        $("#time-h2").text(this.timerSeconds);
 
-        // var timeLeft = setInterval(function() {
-        //     seconds -= 1;
-        //     if (seconds != 0) {
-        //         $("#time-h2").text(seconds);
-        //     } else if (seconds == 0 || $(".answers").data('clicked', true)) {
-        //         clearInterval(timeLeft);
-        //         $("#instructions").text("Time's up!");
-        //         $("#timer-label").text("");
-        //         $("#time-h2").text("");
-        //         triviaGame.incorrectAnswer();
-        //     };
-        // }, 1000);
+        this.clearTimer();
+        timer = setInterval(function() {
+            // console.log(this);
+            
+            triviaGame.timerSeconds -= 1;
+            
+            if (triviaGame.timerSeconds !== 0) {
+                $("#time-h2").text(triviaGame.timerSeconds);
+            } else if (triviaGame.timerSeconds === 0 || $(".answers").data('clicked', true)) {
+                $("#instructions").text("Time's up!");
+                triviaGame.clearTimer();
+                triviaGame.incorrectAnswer();
+            };
+        }, 1000);
         
         // Getting rid of the START button and countdown to next question (see confirm function below)
         $("#start-button").remove();
@@ -42,7 +46,7 @@ var triviaGame = {
         triviaGame.indexQ = Math.floor(Math.random() * this.questions.length);
         var currentObject = this.questions[triviaGame.indexQ];
 
-        if (this.qCount < 3) {
+        if (this.qCount < 5) {
             if (currentObject.shown === false) {
                 this.qCount++;
                 currentObject.shown = true;
@@ -64,7 +68,35 @@ var triviaGame = {
         } else {
             // CREATE SUMMARY OF RIGHT/WRONG ANSWERS HERE!
             // GENERATE A BUTTON TO RESTART THE GAME
-            console.log("All done!");
+            $("#instructions").empty();
+            switch (triviaGame.winCount) {
+                case 5:
+                $("#instructions").text("That was amazing! You got them all right!");
+                break;
+
+                case 4:
+                $("#instructions").text("Very good work!");
+                break;
+                
+                case 3:
+                $("#instructions").text("Pretty good!");
+                break;
+
+                case 2:
+                $("#instructions").text("Come on, you can do better than that!");
+                break;
+
+                case 1:
+                $("#instructions").text("At least you got the 1");
+                break;
+
+                case 0:
+                $("#instructions").text("Ouch... that must have hurt");
+                break;
+            }
+
+            triviaGame.clearTimer();
+            
             $("#question").empty();
             $("#next-in").empty();
             
@@ -76,7 +108,7 @@ var triviaGame = {
             }
 
             $("main").append($("<button id='restart-button'>Play again</button>").on("click", restartGame));
-            // If statement depending on score (e.g. if all correct "Congratulations!") -> $("#instructions").text();
+
             triviaGame.winCount = 0;
             triviaGame.loseCount = 0;
             triviaGame.qCount = 0;
@@ -85,14 +117,17 @@ var triviaGame = {
     },
 
     confirm: function() {
+        triviaGame.clearTimer();
+
         if ($(this).attr("data-a") == triviaGame.questions[triviaGame.indexQ].correct) {
+            triviaGame.clearTimer();
             triviaGame.winCount++;
             $("#instructions").text("Correct!");
             $("#question").text(triviaGame.questions[triviaGame.indexQ].comment);
             $("#options").empty();
             // ADD AN IMAGE HERE -> $("#options").;
             
-            var seconds =4;
+            var seconds = 11;
 
             var timeToNextQuestion = setInterval(function() {
                 seconds -= 1;
@@ -108,6 +143,7 @@ var triviaGame = {
             }, 1000);
 
         } else {
+            triviaGame.clearTimer();
             $("#instructions").text("Incorrect. The answer is " + triviaGame.questions[triviaGame.indexQ].a[triviaGame.questions[triviaGame.indexQ].correct]);
             triviaGame.incorrectAnswer();
         }
@@ -119,7 +155,7 @@ var triviaGame = {
         $("#options").empty();
         // ADD AN IMAGE HERE -> $("#options").;
         
-        var seconds =4;
+        var seconds = 11;
 
         var timeToNextQuestion = setInterval(function() {
             seconds -= 1;
@@ -134,12 +170,20 @@ var triviaGame = {
             };
 
         }, 1000);
+    },
+
+    clearTimer: function(){
+        clearInterval(timer);
+        triviaGame.timerSeconds = 20;
     }
 };
 
 function restartGame() {
     triviaGame.generateQuestion();
 }
+
+var timer;
+
 // When page loads, show a 'start' button. When clicked, first question appears in the jumbotron and timer starts counting down.
 // If counter gets to 0, show "Time's up!" and question is marked as incorrect. Display the comment (and maybe and image) and the right answer.
 
