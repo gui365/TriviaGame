@@ -7,20 +7,20 @@ var triviaGame = {
                  { q: "Which country has the most public holidays", a: ["India", "United States", "Mexico", "Austria"], correct: 0, comment: "India has the most in the world with 21 public holidays, whereas Mexico has only 7!", shown: false },
                  { q: "What is the capital of Peru?", a: ["Vtox", "Quito", "La Paz", "Lima"], correct: 3, comment: "Lima is the capital and largest city of Peru, with a population of 9,752,000 as of 2017", shown: false },
                  { q: "Close to which landmass does the Pacific Ocean reach its max depth?", a: ["Mariana Islands", "The Philippines", "Papua New Guinea", "Japan"], correct: 0, comment: "At this point you would have to dive 36,070 ft to reach the bottom of the ocean!", shown: false },
-                 { q: "How many New York cities would you need to line up to cover the area of the United States?", a: ["1,250,000", "125,000", "12,500", "1,250"], correct: 2, comment: "There would be 12,464 Empire States Buildings and King Kongs", shown: false },
+                 { q: "How many New York cities would you need to line up in order to cover the area of the United States?", a: ["1,250,000", "125,000", "12,500", "1,250"], correct: 2, comment: "Imagine a world with 12,464 Empire State Buildings and King Kongs", shown: false },
                 ],
     winCount: 0,
     loseCount: 0,
     qCount: 0,
     indexQ: 0,
-    timerSeconds: 20,
+    timerSeconds: 30,
     
     generateQuestion: function() {
         // console.log(this);
         
         // Start a countdown
         $("#timer-label").text("Time left");
-        $("#time-h2").text(this.timerSeconds);
+        $("#time-h1").text(this.timerSeconds);
 
         this.clearTimer();
         timer = setInterval(function() {
@@ -28,9 +28,11 @@ var triviaGame = {
             
             triviaGame.timerSeconds -= 1;
             
-            if (triviaGame.timerSeconds !== 0) {
-                $("#time-h2").text(triviaGame.timerSeconds);
-            } else if (triviaGame.timerSeconds === 0 || $(".answers").data('clicked', true)) {
+            if (triviaGame.timerSeconds < 11 && triviaGame.timerSeconds !== -1) {
+                $("#time-h1").text(triviaGame.timerSeconds).css("color", "red");
+            } else if (triviaGame.timerSeconds !== -1) {
+                $("#time-h1").text(triviaGame.timerSeconds).css("color", "black");
+            } else if (triviaGame.timerSeconds === -1) {
                 $("#instructions").text("Time's up!");
                 triviaGame.clearTimer();
                 triviaGame.incorrectAnswer();
@@ -127,15 +129,15 @@ var triviaGame = {
             $("#options").empty();
             // ADD AN IMAGE HERE -> $("#options").;
             
-            var seconds = 11;
+            var seconds = 16;
 
             var timeToNextQuestion = setInterval(function() {
                 seconds -= 1;
 
                 if (seconds > 1) {
-                    $("#next-in").text("Next question in " + seconds + " seconds");
+                    $("#next-in").text("Moving on in " + seconds + " seconds");
                 } else if (seconds === 1) {
-                    $("#next-in").text("Next question in " + seconds + " second");
+                    $("#next-in").text("Moving on in " + seconds + " second");
                 } else if (seconds === 0) {
                     clearInterval(timeToNextQuestion);
                     triviaGame.generateQuestion();
@@ -155,15 +157,15 @@ var triviaGame = {
         $("#options").empty();
         // ADD AN IMAGE HERE -> $("#options").;
         
-        var seconds = 11;
+        var seconds = 16;
 
         var timeToNextQuestion = setInterval(function() {
             seconds -= 1;
 
             if (seconds > 1) {
-                $("#next-in").text("Next question in " + seconds + " seconds");
+                $("#next-in").text("Moving on in " + seconds + " seconds");
             } else if (seconds === 1) {
-                $("#next-in").text("Next question in " + seconds + " second");
+                $("#next-in").text("Moving on in " + seconds + " second");
             } else if (seconds === 0) {
                 clearInterval(timeToNextQuestion);
                 triviaGame.generateQuestion();
@@ -174,7 +176,7 @@ var triviaGame = {
 
     clearTimer: function(){
         clearInterval(timer);
-        triviaGame.timerSeconds = 20;
+        triviaGame.timerSeconds = 30;
     }
 };
 
@@ -184,6 +186,8 @@ function restartGame() {
 
 var timer;
 
+
+// Notes:
 // When page loads, show a 'start' button. When clicked, first question appears in the jumbotron and timer starts counting down.
 // If counter gets to 0, show "Time's up!" and question is marked as incorrect. Display the comment (and maybe and image) and the right answer.
 

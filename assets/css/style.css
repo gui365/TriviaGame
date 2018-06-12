@@ -42,7 +42,7 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
 }
 
 .answers {
@@ -82,4 +82,12 @@ button {
 
 #timer-time h2 {
     font-weight: bold;
+}
+
+#question {
+    padding: 0 2rem;
+}
+
+#options {
+    margin-top: 2rem;
 }
