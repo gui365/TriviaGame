@@ -13,9 +13,10 @@ var triviaGame = {
     loseCount: 0,
     qCount: 0,
     indexQ: 0,
-    timerSeconds: 30,
+    timerSeconds: 20,
     
     generateQuestion: function() {
+        $("#instructions").removeClass("animate-text");
         // console.log(this);
         
         // Start a countdown
@@ -129,7 +130,7 @@ var triviaGame = {
             $("#options").empty();
             // ADD AN IMAGE HERE -> $("#options").;
             
-            var seconds = 16;
+            var seconds = 11;
 
             var timeToNextQuestion = setInterval(function() {
                 seconds -= 1;
@@ -157,7 +158,7 @@ var triviaGame = {
         $("#options").empty();
         // ADD AN IMAGE HERE -> $("#options").;
         
-        var seconds = 16;
+        var seconds = 11;
 
         var timeToNextQuestion = setInterval(function() {
             seconds -= 1;
@@ -176,7 +177,7 @@ var triviaGame = {
 
     clearTimer: function(){
         clearInterval(timer);
-        triviaGame.timerSeconds = 30;
+        triviaGame.timerSeconds = 20;
     }
 };
 

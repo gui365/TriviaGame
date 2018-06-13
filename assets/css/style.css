@@ -4,7 +4,7 @@
 
 html, body {
     height: 100%;
-    
+    background-color: rgb(221, 223, 104);
 }
 
 .flex {
@@ -26,7 +26,12 @@ html, body {
     position: relative;
     text-align: center;
     border: 3px solid black;
-    border-radius: 0px 40px;
+    border-radius: 40px;
+    box-shadow: inset 10px 0 40px rgb(210, 210, 210),
+    inset -10px 0 40px rgb(210, 210, 210),
+    inset 0 10px 40px rgb(210, 210, 210),
+    inset 0 -10px 40px rgb(210, 210, 210),
+    0 5px 5px rgb(116, 116, 116);
 }
 
 .wrapper button {
@@ -36,8 +41,9 @@ html, body {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     padding: 0 0 1.5rem 0;
+
 }
 
 h2 {
@@ -60,6 +66,7 @@ h2 {
 
 main {
     align-content: center;
+    background-color: white;
 }
 
 button {
@@ -90,4 +97,43 @@ button {
 
 #options {
     margin-top: 2rem;
+}
+
+
+header {
+    display: flex;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: black;
+    background-image: url("../images/background.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 90%;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 5px 5px rgb(116, 116, 116);
+}
+
+header h1 {
+    font-family: "Oswald", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    padding: 0;
+    color: white;
+}
+
+.animate-text {
+    animation: attention 1000ms infinite;
+}
+
+@keyframes attention {
+    0% {
+        opacity: 1;
+    }
+    
+    50% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
 }
