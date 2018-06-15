@@ -1,5 +1,3 @@
-// 44, 54, 57
-
 var triviaGame = {
     // Create an array of objects, each one representing a question
     questions: [ { q: "Which of the following was not a memeber of The Beatles?", a: ["Richard Starkey", "Pete Best", "Roger Daltrey", "Stuart Sutcliffe"], correct: 2, comment: "Roger Daltrey is the lead singer of English rock band, The Who.", shown: false },
@@ -21,7 +19,7 @@ var triviaGame = {
         
         // Start a countdown
         $("#timer-label").text("Time left");
-        $("#time-h1").text(this.timerSeconds);
+        $("#time-h1").text(this.timerSeconds).css("color", "black");
 
         this.clearTimer();
         timer = setInterval(function() {
@@ -45,6 +43,7 @@ var triviaGame = {
         $("#restart-button").remove();
         $("#next-in").empty();
         $("#options").empty();
+        $("#comment").empty();
         // Randomly pick a question that hasn't come up yet
         triviaGame.indexQ = Math.floor(Math.random() * this.questions.length);
         var currentObject = this.questions[triviaGame.indexQ];
@@ -53,7 +52,8 @@ var triviaGame = {
             if (currentObject.shown === false) {
                 this.qCount++;
                 currentObject.shown = true;
-                $("#instructions").html("Question #" + (this.qCount) + ":");
+                $("#instructions").empty();
+                $("#question-number").html("Question #" + (this.qCount));
                 $("#question").html(currentObject.q);
                 
                 //Generating the options with a loop
@@ -82,7 +82,7 @@ var triviaGame = {
                 break;
                 
                 case 3:
-                $("#instructions").text("Pretty good!");
+                $("#instructions").text("Not bad at all");
                 break;
 
                 case 2:
@@ -90,11 +90,11 @@ var triviaGame = {
                 break;
 
                 case 1:
-                $("#instructions").text("At least you got the 1");
+                $("#instructions").text("At least you got the 1...");
                 break;
 
                 case 0:
-                $("#instructions").text("Ouch... that must have hurt");
+                $("#instructions").text("Ouch... that must have hurt!");
                 break;
             }
 
@@ -103,8 +103,10 @@ var triviaGame = {
             $("#question").empty();
             $("#next-in").empty();
             
-            $("#options").append($("<h2>Correct: " + triviaGame.winCount + "</h2>"));
-            $("#options").append($("<h2>Incorrect: " + triviaGame.loseCount + "</h2>"));
+            $("#results").toggleClass("opacity");
+            $("#results").toggleClass("no-opacity");
+            $("#results").append($("<div class='flex space-between-row'><h2 style='padding: 0;'>Correct </h2><i style='font-size: 1.5rem; margin: 0 0.5rem;' class='fas fa-check-circle'></i>" + "<h2 style='padding: 0;'> " + triviaGame.winCount + "</h2></div><br>"));
+            $("#results").append($("<div class='flex space-between-row'><h2 style='padding: 0;'>Incorrect </h2><i style='font-size: 1.5rem; margin: 0 0.5rem;' class='fas fa-times-circle'></i>" + "<h2 style='padding: 0;'> " + triviaGame.loseCount + "</h2></div>"));
 
             for (let i = 0; i < triviaGame.questions.length; i++) {
                 triviaGame.questions[i].shown = false;
@@ -125,25 +127,30 @@ var triviaGame = {
         if ($(this).attr("data-a") == triviaGame.questions[triviaGame.indexQ].correct) {
             triviaGame.clearTimer();
             triviaGame.winCount++;
+            $("#question").empty();
             $("#instructions").text("Correct!");
-            $("#question").text(triviaGame.questions[triviaGame.indexQ].comment);
+            $("#comment").text(triviaGame.questions[triviaGame.indexQ].comment);
             $("#options").empty();
             // ADD AN IMAGE HERE -> $("#options").;
             
             var seconds = 11;
 
-            var timeToNextQuestion = setInterval(function() {
+            nextTimer = setInterval(function() {
                 seconds -= 1;
 
                 if (seconds > 1) {
-                    $("#next-in").text("Moving on in " + seconds + " seconds");
+                    $("#next-in").text("Moving on in " + seconds + " seconds, or click here to skip");
                 } else if (seconds === 1) {
                     $("#next-in").text("Moving on in " + seconds + " second");
                 } else if (seconds === 0) {
-                    clearInterval(timeToNextQuestion);
+                    clearInterval(nextTimer);
                     triviaGame.generateQuestion();
                 };
             }, 1000);
+
+            $("#next-in").on("click", function(){
+                seconds = 0;
+            });
 
         } else {
             triviaGame.clearTimer();
@@ -154,25 +161,27 @@ var triviaGame = {
 
     incorrectAnswer: function() {
         triviaGame.loseCount++;
-        $("#question").text(triviaGame.questions[triviaGame.indexQ].comment);
+        $("#question").empty();
+        $("#comment").text(triviaGame.questions[triviaGame.indexQ].comment);
         $("#options").empty();
         // ADD AN IMAGE HERE -> $("#options").;
         
         var seconds = 11;
 
-        var timeToNextQuestion = setInterval(function() {
+        nextTimer = setInterval(function() {
             seconds -= 1;
 
             if (seconds > 1) {
-                $("#next-in").text("Moving on in " + seconds + " seconds");
+                $("#next-in").text("Moving on in " + seconds + " seconds, or click here to skip");
             } else if (seconds === 1) {
                 $("#next-in").text("Moving on in " + seconds + " second");
             } else if (seconds === 0) {
-                clearInterval(timeToNextQuestion);
+                clearInterval(nextTimer);
                 triviaGame.generateQuestion();
             };
 
         }, 1000);
+
     },
 
     clearTimer: function(){
@@ -183,10 +192,18 @@ var triviaGame = {
 
 function restartGame() {
     triviaGame.generateQuestion();
+    $("#results").toggleClass("opacity");
+    $("#results").toggleClass("no-opacity");
+    $("#results").empty();
 }
 
 var timer;
+var nextTimer;
 
+$("#next-in").on("click", function(){
+    clearInterval(nextTimer);
+    triviaGame.generateQuestion();
+});
 
 // Notes:
 // When page loads, show a 'start' button. When clicked, first question appears in the jumbotron and timer starts counting down.

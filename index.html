@@ -7,7 +7,8 @@
     <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
     
     
@@ -17,19 +18,32 @@
     <div>
         <main class="wrapper flex">
             <header class="align-justify-center">
-                <h1 style="font-weight:700">FIFA World Cup</h1><img src="assets/images/world-cup.png" alt="World Cup" style="height:50px;"><h1>Trivia Game</h1>
+                <h1 style="font-weight: bold;">movies</h1>
+                <!-- <img src="assets/images/film.png" alt="Movie Roll icon"> -->
+                <i class="fas fa-film fa-3x"></i>
+                <h1>trivia game</h1>
             </header>
-            <div id="timer" class="flex">
-                <div id="timer-label"></div>
-                <div id="timer-time"><h1 id="time-h1"></h1></div>
+
+            <div id="info-bar" class="flex space-between-row">
+                <div id="info" class="flex info-bar-section text-left">
+                    <h2 id="question-number"></h2>
+                </div>
+                <div id="timer" class="flex info-bar-section text-right">
+                    <div id="timer-label"></div>
+                    <div id="timer-time"><h1 id="time-h1"></h1></div>
+                </div>
             </div>
-            <h1 id="instructions" class="animate-text">Press the START button</h1>
+            
+            <h1 id="instructions" class="animate-text">Press the start button</h1>
             <div id="main-question" class="flex align-justify-center">
-                <h2 id="question"></h2>
+                <h1 id="question"></h1>
+                <h2 id="comment"></h2>
                 <div id="options"></div>
+                <div id="results" class="no-opacity "></div>
                 <div id="next-in"></div>
+                <div id="next"></div>
             </div>
-            <button id="start-button" onclick="triviaGame.generateQuestion()">START</button>
+            <button id="start-button" onclick="triviaGame.generateQuestion()">S T A R T</button>
         </main>
     </div>
 
