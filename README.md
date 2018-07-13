@@ -3,7 +3,7 @@
 This project was the homework for week 5 of the Penn Coding Boot Camp. The goal was to create a multiple choice trivia game and apply knowledge on timers and intervals.
 
 ## Challenge
-* Create a trivia game using JavaScript. When the game starts, a question is randomly selected and a timer starts counting down. The user then chooses an answer. A message then informs the user if his answer was correct or incorrect. If the time runs out and the user didn't make a choice, the answer is considered incorrect.
+* Create a trivia game using JavaScript. When the game starts, a question is randomly selected and a timer starts counting down. The user chooses an answer and a message informs the user if his answer was correct or incorrect. If the time runs out and the user didn't make a choice, the answer is considered incorrect.
 After 5 questions, a summary comes up telling the user how well they did.
 
 ## Objective
