@@ -19,13 +19,13 @@ html, body {
 }
 
 .no-opacity {
-    opacity: 0;
+    display: none;
     position: fixed;
     z-index: -20;
 }
 
 .opacity {
-    opacity: 1;
+    display: block;
     position: inherit;
 }
 
@@ -115,6 +115,13 @@ button {
     border: 2px solid white;
 }
 
+#restart-button {
+    position: absolute;
+    right: 1vw;
+    bottom: 10px;
+    width: 25%;
+}
+
 #main-question {
     width: 100%;
 }
@@ -192,7 +199,6 @@ header i {
     border-radius: 35px;
     border: 2px solid white;
     box-shadow: 0 2px 2px grey;
-
 }
 
 /* ANIMATIONS */
@@ -223,4 +229,48 @@ button:hover {
     cursor: pointer;
     background-color: rgb(0, 0, 0);
     color: white;
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 670px) {
+    header h1 {
+        font-size: 2.5rem;
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    #instructions {
+        font-size: 2.2rem;
+    }
+
+    #results {
+        padding: 2rem;
+    }
+
+    #info-bar {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #comment, #question {
+        font-size: 1.2rem;
+    }
+
+    #options {
+        margin-top: 1rem;
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .answers {
+        width: 30%;
+        font-size: 1rem;
+        margin: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
 }
