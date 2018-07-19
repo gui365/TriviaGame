@@ -1,276 +1,350 @@
 /* FONTS */
 
 @font-face {
-    font-family: 'Taller';
-    src: url("../fonts/taller.otf");
+  font-family: 'Taller';
+  src: url("../fonts/taller.otf");
 }
 
 /* GENERAL CLASSES */
 
 * {
-    font-family: "Lato", 'Times New Roman', Times, serif;
+  font-family: "Lato", 'Times New Roman', Times, serif;
 }
 
 html, body {
-    height: 100%;
-    background-image: url("../images/background-body.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+  height: 100%;
+  background-image: url("../images/background-body.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .no-opacity {
-    display: none;
-    position: fixed;
-    z-index: -20;
+  display: none;
+  position: fixed;
+  z-index: -20;
 }
 
 .opacity {
-    display: block;
-    position: inherit;
+  display: block;
+  position: inherit;
 }
 
 .flex {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .space-between-row {
-    justify-content: center;
-    align-content: space-between;
-    flex-direction: row;
+  justify-content: center;
+  align-content: space-between;
+  flex-direction: row;
 }
 
 .align-justify-center {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-left {
-    text-align: left;
-    justify-content: center;
+  text-align: left;
+  justify-content: center;
 }
 
 .text-right {
-    text-align: right;
+  text-align: right;
 }
 
 /* OTHER CLASSES, IDs & ELEMENTS */
 
 .info-bar-section {
-    width: 45%;
+  width: 45%;
 }
 
 .wrapper {
-    /* background-color: yellow; */
-    height: 95vh;
-    width: 90vw;
-    align-items: center;
-    position: relative;
-    text-align: center;
-    /* border: 3px solid black; */
-    border-radius: 40px;
-    box-shadow:
-    /* inset 20px 0 50px rgb(209, 209, 209), */
-    /* inset -10px 0 50px rgb(209, 209, 209), */
-    inset 0 -5px 10px -5px rgb(209, 209, 209),
-    inset 0px 15px 20px -2px rgb(255, 255, 255);
-    /* 0 2px 5px rgb(81, 57, 97); */
+  /* background-color: yellow; */
+  height: 95vh;
+  width: 90vw;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  /* border: 3px solid black; */
+  border-radius: 40px;
+  box-shadow:
+  /* inset 20px 0 50px rgb(209, 209, 209), */
+  /* inset -10px 0 50px rgb(209, 209, 209), */
+  inset 0 -5px 10px -5px rgb(209, 209, 209),
+  inset 0px 15px 20px -2px rgb(255, 255, 255);
+  /* 0 2px 5px rgb(81, 57, 97); */
 }
 
 h1 {
-    font-size: 2.2rem;
-    /* padding: 0 0 1.5rem 0; */
+  font-size: 2.2rem;
+  /* padding: 0 0 1.5rem 0; */
 }
 
 h2 {
-    font-size: 1.5rem;
-    padding: 0 1rem;
+  font-size: 1.5rem;
+  padding: 0 1rem;
 }
 
 .answers {
-    padding: 0.5rem 2rem;
-    margin: 0.5rem 0 0 0;
-    background-color: white;
-    font-size: 1.2rem;
-    border: 1px solid black;
-    border-radius: 20px;
+  padding: 0.5rem 2rem;
+  margin: 0.5rem 0 0 0;
+  background-color: white;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 20px;
 }
 
 main {
-    align-content: center;
-    background-color: rgba(255, 255, 255, 0.8);
+  align-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 button {
-    font-size: 1.2rem;
-    color: white;
-    font-weight: 700;
-    position: absolute;
-    bottom: 40px;
-    width: 50%;
-    height: 3rem;
-    background-color: rgb(201, 46, 188);
-    border-radius: 30px;
-    border: 2px solid white;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 700;
+  position: absolute;
+  bottom: 40px;
+  width: 50%;
+  height: 3rem;
+  background-color: rgb(201, 46, 188);
+  border-radius: 30px;
+  border: 2px solid white;
 }
 
 #restart-button {
-    position: absolute;
-    right: 1vw;
-    bottom: 10px;
-    width: 25%;
+  position: absolute;
+  right: 1vw;
+  bottom: 10px;
+  width: 25%;
 }
 
 #main-question {
-    width: 100%;
+  width: 100%;
 }
 
 #timer-time h1 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #instructions {
-    font-family: "Dancing Script", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 3.2rem;
+  font-family: "Dancing Script", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 3.2rem;
 }
 
 #question {
-    font-family: "Lato", 'Times New Roman', Times, serif;
-    padding: 0 2rem;
-    margin-top: 1rem;
-    font-size: 1.5rem;
+  font-family: "Lato", 'Times New Roman', Times, serif;
+  padding: 0 2rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
 #options {
-    margin-top: 2rem;
-    width: 40%;
+  margin-top: 2rem;
+  width: 40%;
 }
 
 #info-bar {
-    width: 90%;
-    margin-bottom: 2rem;
-    background:linear-gradient(23deg,rgba(241, 23, 212, 0.8) , rgba(238, 15, 15, 0.8), rgba(218, 75, 8, 0.8), rgba(235, 231, 25, 0.8));
-    color: white;
-    padding: 1rem 0;
-    border-radius: 40px;
+  width: 90%;
+  margin-bottom: 2rem;
+  background:linear-gradient(23deg,rgba(241, 23, 212, 0.8) , rgba(238, 15, 15, 0.8), rgba(218, 75, 8, 0.8), rgba(235, 231, 25, 0.8));
+  color: white;
+  padding: 1rem 0;
+  border-radius: 40px;
 }
 
 header {
-    display: flex;
-    margin: 1rem 0;
-    padding: 1rem;
-    /* background-color: rgba(69, 16, 129, 0.7); */
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    width: 90%;
-    border-radius: 0 0 20px 20px;
-    /* box-shadow: 0 2px 2px rgb(81, 57, 97); */
+  display: flex;
+  margin: 1rem 0;
+  padding: 1rem;
+  /* background-color: rgba(69, 16, 129, 0.7); */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 90%;
+  border-radius: 0 0 20px 20px;
+  /* box-shadow: 0 2px 2px rgb(81, 57, 97); */
 }
 
 header h1 {
-    font-family: 'Taller', 'Times New Roman', Times, serif;
-    font-size: 3.7rem;
-    padding: 0;
-    color: rgb(0, 0, 0);
-    /* margin-top: 1rem; */
-    text-shadow: inset 0px 4px 3px rgb(255, 255, 255);
+  font-family: 'Taller', 'Times New Roman', Times, serif;
+  font-size: 3.7rem;
+  padding: 0;
+  color: rgb(0, 0, 0);
+  /* margin-top: 1rem; */
+  text-shadow: inset 0px 4px 3px rgb(255, 255, 255);
 }
 
 header i {
-    background-color: black;
-    padding: 0.6rem;
-    margin: 0 0.5rem;
-    color: white;
-    border-radius: 50%;
+  background-color: black;
+  padding: 0.6rem;
+  margin: 0 0.5rem;
+  color: white;
+  border-radius: 50%;
 }
 
 .animate-text {
-    animation: attention 1000ms infinite;
+  animation: attention 1000ms infinite;
 }
 
 #next-in {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #results {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 3.5rem;
-    border-radius: 35px;
-    border: 2px solid white;
-    box-shadow: 0 2px 2px grey;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 3.5rem;
+  border-radius: 35px;
+  border: 2px solid white;
+  box-shadow: 0 2px 2px grey;
 }
 
 /* ANIMATIONS */
 
 @keyframes attention {
-    0% {
-        opacity: 1;
-    }
-    
-    50% {
-        opacity: 0;
-    }
-    
-    100% {
-        opacity: 1;
-    }
+  0% {
+  opacity: 1;
+  }
+  
+  50% {
+  opacity: 0;
+  }
+  
+  100% {
+  opacity: 1;
+  }
 }
 
 /* PSEUDOCLASSES */
 
 button:hover {
-    background-color: rgb(100, 24, 94);
-    border: none;
-    cursor: pointer;
+  background-color: rgb(100, 24, 94);
+  border: none;
+  cursor: pointer;
 }
 
 .answers:hover {
-    cursor: pointer;
-    background-color: rgb(0, 0, 0);
-    color: white;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 /* RESPONSIVE DESIGN */
-@media screen and (max-width: 670px) {
-    header h1 {
-        font-size: 2.5rem;
-        padding: 0.5rem;
-        margin: 0;
-    }
+@media (max-width: 670px), (max-height: 690px) {
+  header h1 {
+    font-size: 2.5rem;
+    padding: 0.5rem;
+    margin: 0;
+  }
 
-    #instructions {
-        font-size: 2.2rem;
-    }
+  #instructions {
+     font-size: 2.2rem;
+  }
 
-    #results {
-        padding: 2rem;
-    }
+  #results {
+    padding: 2rem;
+  }
 
-    #info-bar {
-        padding: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
+  #info-bar {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-    #comment, #question {
-        font-size: 1.2rem;
-    }
+  #comment, #question {
+    font-size: 1.2rem;
+  }
 
-    #options {
-        margin-top: 1rem;
-        width: 90%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  #options {
+    margin-top: 1rem;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .answers {
-        width: 30%;
-        font-size: 1rem;
-        margin: 0.5rem;
-    }
+  .answers {
+    width: 30%;
+    font-size: 1rem;
+    margin: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (max-width: 500px) {
+  .responsive {
+    display: none;
+  }
 
+  #restart-button {
+    right: auto;
+    bottom: 20px;
+    width: 60% !important;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header {
+    margin: 0;
+  }
+
+  #next-in {
+    font-size: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  #instructions {
+    font-size: 2rem;
+    padding: 0 0.8rem;
+  }
+
+  #question-number, #time-h1, #timer-left, #comment {
+    font-size: 0.9rem;
+  }
+
+  #question {
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+  }
+}
+  
+@media screen and (max-width: 305px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  header {
+    margin: 0;
+  }
+
+  
+
+  #options {
+    margin-top: 0;
+  }
+
+  #instructions {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+  }
+
+  #info-bar {
+    margin-bottom: 0;
+  }
+
+  #results h2, #results i {
+    font-size: 1rem !important;
+  }
+
+  #results {
+      padding: 1rem;
+  }
 }
